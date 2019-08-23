@@ -76,6 +76,11 @@ RSpec.describe Enumerable do
             cond = arr.my_none? { |elem| elem == 10 }
             expect(cond).to be true
         end
+        it 'returns false' do
+            arr = ['name','lastname','age']
+            cond = arr.my_none? { |elem| elem == 'name' }
+            expect(cond).to be false
+        end
     end
     describe '#my_count' do
         it 'descripcion' do
