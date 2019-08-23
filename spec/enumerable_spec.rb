@@ -2,8 +2,11 @@ require './lib/iterator_methods.rb'
 
 RSpec.describe Enumerable do
     describe '#my_each' do
-        it 'descripcion' do
-            
+        it 'iterates through numbers in an array' do
+            arr = [1,2,3,4,5]
+            count = 0
+            arr.my_each { |i| count += 1 }
+            expect(count).to eq(arr.length)
         end
     end
     describe '#my_each_with_index' do
