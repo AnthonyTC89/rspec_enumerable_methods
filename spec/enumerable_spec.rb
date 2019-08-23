@@ -121,6 +121,12 @@ RSpec.describe Enumerable do
             arr.my_map ( proc{|elem| elem * 2} )
             expect(arr).to match_array([2,4,6,8]) 
         end
+
+        it 'with a block' do
+            arr = [1,2,3,4]
+            arr.my_map {|elem| elem * 3} 
+            expect(arr).to match_array([3,6,9,12]) 
+        end
     end
     describe '#my_inject' do
         it 'descripcion' do
