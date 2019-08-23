@@ -82,9 +82,14 @@ RSpec.describe Enumerable do
             expect(cond).to be false
         end
     end
-    describe '#my_count' do
-        it 'descripcion' do
-            
+    describe ' #my_count' do
+        it ' without arguments nor block' do
+            arr = [1,2,3,4]
+            expect(arr.length).to eql(arr.my_count)
+        end
+        it ' with an argument without block' do
+            arr = [1,3,3,4]
+            expect(arr.my_count(3)).to eql(2)
         end
     end
     describe '#my_map' do
