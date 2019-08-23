@@ -93,6 +93,7 @@ RSpec.describe Enumerable do
             arr = [1,2,3,4]
             expect(arr.length).to eql(arr.my_count)
         end
+        
         it ' with an argument without block' do
             arr = [1,3,3,4]
             expect(arr.my_count(3)).to eql(2)
@@ -107,6 +108,7 @@ RSpec.describe Enumerable do
             count = [1,3,3,4].my_count(3) { |num| num > 1}
             expect(count).to eql(2)
         end
+
         it 'comparing count and my_count methods' do
             arr = [1,2,3,4]
             expect(arr.count).to eql(arr.my_count)
