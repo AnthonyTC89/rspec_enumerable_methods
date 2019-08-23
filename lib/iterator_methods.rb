@@ -66,19 +66,26 @@ module Enumerable
   end
 
   def my_inject(*arg)
-    memo = arg.empty? ? self[0] : arg[0]
-    (length - 1).times do |i|
-      memo = yield memo, self[i + 1]
+    if arg.empty?
+      memo = self[0]
+      (length-1).times do |i|
+        memo = yield memo, self[i+1]
+      end
+    else
+      memo = arg[0]
+      length.times do |i|
+        memo = yield memo, self[i]
+      end
     end
     memo
   end
 end
 
 def multiply_els(array)
-  array.my_inject { |elem, n| elem * n }
+  array.my_inject { |elem, n| elem + n }
 end
 
-# array = [1, 2, 3, 4, 5]
+array = [1, 2, 3, 4]
 
 # p array.my_map { |elem| elem + 2 }
 # p array.my_map(proc { |elem| elem * 2 })
@@ -87,8 +94,8 @@ end
 # p multiply_els array
 # p array.inject { |elem, n| elem * n}
 
-# p array.my_inject(10) { |elem, n| elem * n}
-# p array.inject(10) { |elem, n| elem * n}
+# p array.my_inject { |elem, n| elem + n}
+# p array.inject { |elem, n| elem + n}
 
 # p array.my_count(1) {|elem| elem > 2}
 # p array.count(1) { |elem| elem > 2}

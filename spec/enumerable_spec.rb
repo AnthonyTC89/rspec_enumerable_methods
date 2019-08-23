@@ -129,10 +129,15 @@ RSpec.describe Enumerable do
         end
     end
     describe '#my_inject' do
-        it 'descripcion' do
+        it ' with a block ' do
             arr = [1,2,3,4]
             sum = arr.my_inject { |elem, n| elem + n }
             expect(sum).to eq(10)
+        end
+        it ' with a block and an argument' do
+            arr = [1,2,3,4]
+            sum = arr.my_inject(5) { |elem, n| elem + n }
+            expect(sum).to eq(15)
         end
     end
 end
