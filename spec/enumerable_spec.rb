@@ -8,6 +8,14 @@ RSpec.describe Enumerable do
             arr.my_each { |i| count += 1 }
             expect(count).to eq(arr.length)
         end
+
+        it 'iterates through string in an array' do
+            arr = ['hi','my','name','is','Ariel Camus']
+            accum = ''
+            arr.my_each { |elem| accum += elem + ' ' }
+            expect(accum).to eq('hi my name is Ariel Camus ')
+        end
+
     end
     describe '#my_each_with_index' do
         it 'descripcion' do
