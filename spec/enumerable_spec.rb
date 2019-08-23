@@ -16,6 +16,7 @@ RSpec.describe Enumerable do
             expect(accum).to eq('hi my name is Ariel Camus ')
         end
     end
+
     describe ' #my_each_with_index' do
         it ' iterates numbers with index in an array' do
             arr = [0,1,2,3,4]
@@ -31,6 +32,7 @@ RSpec.describe Enumerable do
             expect(concat).to eql("a0b1c2d3e4")
         end
     end
+
     describe ' #my_select' do
         it ' iterates and select odd numbers in an array' do
             arr = [0,1,2,3,4,5,6,7,8,9]
@@ -44,6 +46,7 @@ RSpec.describe Enumerable do
             expect(arr_select2).to match_array(["there", "carry", "taken"]) 
         end 
     end
+
     describe ' #my_all?' do
         it 'returns elements less than 10' do
             arr = [0,1,2,3,4,5,6,7,8,9]
@@ -57,6 +60,7 @@ RSpec.describe Enumerable do
             expect(cond).to be false
         end
     end
+
     describe ' #my_any?' do
         it ' iterates and compare if any element in the array have the condition in the block' do
             arr = [0,1,2,3,4,5,6,7,8,9]
@@ -70,6 +74,7 @@ RSpec.describe Enumerable do
             expect(cond).to be false
         end
     end
+
     describe '#my_none?' do
         it 'returns true' do
             arr = [1,2,3,4,5,6,7,8,9]
@@ -82,11 +87,34 @@ RSpec.describe Enumerable do
             expect(cond).to be false
         end
     end
-    describe '#my_count' do
-        it 'descripcion' do
-            
+
+    describe ' #my_count' do
+        it ' without arguments nor block' do
+            arr = [1,2,3,4]
+            expect(arr.length).to eql(arr.my_count)
+        end
+        
+        it ' with an argument without block' do
+            arr = [1,3,3,4]
+            expect(arr.my_count(3)).to eql(2)
+        end
+
+        it ' with a block' do
+            count = [1,3,3,4].my_count { |num| num > 1}
+            expect(count).to eql(3)
+        end
+
+        it ' with a block and argument' do
+            count = [1,3,3,4].my_count(3) { |num| num > 1}
+            expect(count).to eql(2)
+        end
+
+        it 'comparing count and my_count methods' do
+            arr = [1,2,3,4]
+            expect(arr.count).to eql(arr.my_count)
         end
     end
+    
     describe '#my_map' do
         it 'descripcion' do
             
