@@ -58,6 +58,20 @@ RSpec.describe Enumerable do
       cond = arr.my_all? { |elem| elem[0] == 's' }
       expect(cond).to be false
     end
+
+    it ' without block and with an element nil' do
+      cond = [nil, true, false].my_all?
+      expect(cond).to be false
+    end
+
+    it ' without block and with elements true' do
+      cond = [true, 2, 1, 'hola', 'mundo'].my_all?
+      expect(cond).to be true
+    end
+
+    it ' comparing with all?' do
+      expect([true, 2, 1].my_all?).to be [true, 2, 1].all?
+    end
   end
 
   describe ' #my_any?' do
@@ -70,6 +84,20 @@ RSpec.describe Enumerable do
       arr = %w[word school bus eat]
       cond = arr.my_any? { |elem| elem == 'take' }
       expect(cond).to be false
+    end
+
+    it ' without block and with an element nil' do
+      cond = [true, nil, false].my_any?
+      expect(cond).to be true
+    end
+
+    it ' without block and with elements true' do
+      cond = [true, true, nil, false, 1].my_any?
+      expect(cond).to be true
+    end
+
+    it ' comparing with all?' do
+      expect([true, nil, false].my_any?).to be [true, nil, false].any?
     end
   end
 
@@ -87,7 +115,7 @@ RSpec.describe Enumerable do
 
   describe ' #my_count' do
     it ' without arguments nor block' do
-      expect(arrNum.length).to eql(arrNum.my_count)
+      expect(arrNum.my_count).to eql(arrNum.length)
     end
 
     it ' with an argument without block' do
@@ -105,7 +133,7 @@ RSpec.describe Enumerable do
     end
 
     it 'comparing count and my_count methods' do
-      expect(arrNum.count).to eql(arrNum.my_count)
+      expect(arrNum.my_count).to eql(arrNum.count)
     end
   end
 
